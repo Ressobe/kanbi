@@ -11,7 +11,7 @@ type TrashProps = {
 export default function Trash({ setCards }: TrashProps) {
     const [active, setActive] = useState(false);
 
-    const handleDragOver = (e: DragEvent) => {
+    const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         setActive(true);
     };
@@ -20,7 +20,7 @@ export default function Trash({ setCards }: TrashProps) {
         setActive(false);
     };
 
-    const handleDragEnd = (e: DragEvent) => {
+    const handleDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
         if (e.dataTransfer) {
             const cardId = e.dataTransfer.getData("cardId");
             setCards((pv) => pv.filter((c) => c.id !== cardId));

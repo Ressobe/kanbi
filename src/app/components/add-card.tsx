@@ -22,7 +22,6 @@ export default function AddCard({ column, setCards }: AddCardProps) {
             id: Math.random().toString(),
 
         };
-
         setCards((pv) => [...pv, newCard]);
         setAdding(false);
     };

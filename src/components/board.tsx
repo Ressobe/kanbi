@@ -3,7 +3,7 @@
 import Trash from "./trash";
 import Column from "./column";
 import { useEffect, useState } from "react";
-import { CardType } from "../types";
+import { CardType } from "@/app/types";
 
 
 export function Board() {

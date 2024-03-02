@@ -1,7 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction, useState } from "react";
-import { CardType } from "../types";
+import { CardType } from "@/app/types";
 import { Card, DropIndicator } from "./card";
 import AddCard from "./add-card";
 

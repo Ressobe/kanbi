@@ -1,7 +1,7 @@
 "use client";
 
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
-import { CardType } from "../types";
+import { CardType } from "@/app/types";
 import { PlusCircleIcon, PlusIcon } from "lucide-react";
 import { motion } from "framer-motion";
 

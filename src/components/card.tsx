@@ -1,4 +1,4 @@
-import { CardType } from "../types";
+import { CardType } from "@/app/types";
 import { motion } from "framer-motion";
 
 type CardProps = CardType & {

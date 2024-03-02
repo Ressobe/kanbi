@@ -14,9 +14,45 @@ datasource db {
 }
 
 model User {
-  id  Int  @id @default(autoincrement())
-  email String @unique
-  username String @unique
-  password String
+  id        Int  @id @default(autoincrement())
+  email     String @unique
+  username  String @unique
+  password  String
   createdAt DateTime @default(now())
+
+  boards    Board[]
+}
+
+model Board {
+  id        Int       @id @default(autoincrement())
+  title     String
+  createdAt DateTime  @default(now())
+
+  // Relacja z użytkownikiem
+  owner     User      @relation(fields: [ownerId], references: [id])
+  ownerId   Int
+
+  // Relacja z listami
+  lists     List[]
+}
+
+model List {
+  id        Int       @id @default(autoincrement())
+  title     String
+  createdAt DateTime  @default(now())
+
+  board     Board     @relation(fields: [boardId], references: [id])
+  boardId   Int
+
+  tasks     Task[]
+}
+
+
+model Task {
+  id        Int       @id @default(autoincrement())
+  content   String
+  createdAt DateTime  @default(now())
+
+  list      List      @relation(fields: [listId], references: [id])
+  listId    Int
 }

@@ -51,14 +51,14 @@ export function Board() {
                 title="Backlog"
                 column="backlog"
                 headingColor="text-neutral-500"
-                cards={cards.filter(c => c.column === "backlog")}
+                cards={cards}
                 setCards={setCards}
             />
             <Column
                 title="TODO"
                 column="todo"
                 headingColor="text-yellow-200"
-                cards={cards.filter(c => c.column === "todo")}
+                cards={cards}
                 setCards={setCards}
 
             />
@@ -67,7 +67,7 @@ export function Board() {
                 title="In progress"
                 column="doing"
                 headingColor="text-blue-200"
-                cards={cards.filter(c => c.column === "doing")}
+                cards={cards}
                 setCards={setCards}
 
             />
@@ -76,7 +76,7 @@ export function Board() {
                 title="Complete"
                 column="done"
                 headingColor="text-emerald-200"
-                cards={cards.filter(c => c.column === "done")}
+                cards={cards}
                 setCards={setCards}
             />
             <Trash setCards={setCards} />

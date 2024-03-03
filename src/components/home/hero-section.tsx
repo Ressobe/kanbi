@@ -1,11 +1,6 @@
 import Link from "next/link";
 import SignButton from "../buttons/sign-button";
 import ShowCase from "./show-case";
-import { RefObject } from "react";
-
-type HeroSectionProps = {
-    ref: RefObject<HTMLDivElement>;
-}
 
 export default function HeroSection() {
     return (

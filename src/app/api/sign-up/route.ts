@@ -41,19 +41,6 @@ export async function POST(req: Request) {
         email,
         username,
         password: hashedPassword,
-        boards: {
-          create: {
-            title: "default",
-            columns: {
-              create: [
-                { title: "Backlog" },
-                { title: "To do" },
-                { title: "In Progress" },
-                { title: "Done" }
-              ]
-            }
-          }
-        }
       },
     });
 

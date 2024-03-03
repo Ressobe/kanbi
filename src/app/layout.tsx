@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" type="image/x-icon" href="/board.png"/>
+      <link rel="icon" type="image/x-icon" href="/icon.png"/>
       <body className={inter.className}>
         {children}
         <Toaster />

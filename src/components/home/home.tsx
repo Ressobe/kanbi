@@ -1,15 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import ShowCase from "./show-case";
 import SignButton from "../buttons/sign-button";
-import { CheckCircleIcon } from "lucide-react";
 import Pricing from "./pricing";
 import ContactUs from "./contact-us";
-import { useRef } from "react";
-import { Button } from "../ui/button";
 import HeroSection from "./hero-section";
 import FeaturesSecion from "./feauters-section";
+import { useRef } from "react";
+import { Button } from "../ui/button";
 
 
 export default function Home() {
@@ -22,16 +20,32 @@ export default function Home() {
         <>
             <nav className="bg-zinc-950/70 border-b border-primary-foreground p-4 flex items-center justify-between">
                 <div className="flex gap-x-10">
-                    <Button onClick={() => feautersRef.current?.scrollIntoView({ behavior: "smooth" })} variant="outline" className="text-md py-1 px-4 border-none font-medium hover:cursor-pointer">
+                    <Button 
+                        onClick={() => feautersRef.current?.scrollIntoView({ behavior: "smooth" })} 
+                        variant="outline" 
+                        className="text-md py-1 px-4 border-none font-medium hover:cursor-pointer"
+                    >
                         Features
                     </Button>
-                    <Button onClick={() => pricingRef.current?.scrollIntoView({ behavior: "smooth" })} variant="outline" className="text-md py-1 px-4 border-none font-medium hover:cursor-pointer">
+                    <Button 
+                        onClick={() => pricingRef.current?.scrollIntoView({ behavior: "smooth" })} 
+                        variant="outline" 
+                        className="text-md py-1 px-4 border-none font-medium hover:cursor-pointer"
+                    >
                         Pricing
                     </Button>
-                    <Button onClick={() => contactUsRef.current?.scrollIntoView({ behavior: "smooth" })} variant="outline" className="text-md py-1 px-4 border-none font-medium hover:cursor-pointer">
+                    <Button 
+                        onClick={() => contactUsRef.current?.scrollIntoView({ behavior: "smooth" })} 
+                        variant="outline" 
+                        className="text-md py-1 px-4 border-none font-medium hover:cursor-pointer"
+                    >
                         Contact
                     </Button>
-                    <Button onClick={() => aboutUsRef.current?.scrollIntoView({ behavior: "smooth" })} variant="outline" className="text-md py-1 px-4 border-none font-medium hover:cursor-pointer">
+                    <Button 
+                        onClick={() => aboutUsRef.current?.scrollIntoView({ behavior: "smooth" })} 
+                        variant="outline" 
+                        className="text-md py-1 px-4 border-none font-medium hover:cursor-pointer"
+                    >
                         About
                     </Button>
                 </div>
@@ -58,8 +72,8 @@ export default function Home() {
                         <ContactUs />
                     </div>
                 </main>
-                <div ref={aboutUsRef}></div>
             </div>
+            <div ref={aboutUsRef}></div>
         </>
     );
 }

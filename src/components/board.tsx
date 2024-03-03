@@ -2,26 +2,15 @@
 
 import Trash from "./trash";
 import Column from "./column";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CardType } from "@/app/types";
 
 
 export function Board() {
     const [cards, setCards] = useState<CardType[] | []>([]);
-    const [hasChecked, setHasChecked] = useState(false);
 
-    useEffect(() => {
-        hasChecked && localStorage.setItem("cards", JSON.stringify(cards));
-    }, [cards]);
-
-    useEffect(() => {
-        const cardsData = localStorage.getItem("cards");
-        setCards(cardsData ? JSON.parse(cardsData) : []);
-        setHasChecked(true);
-    }, []);
-
-    return (
-        <div className="flex h-full w-full gap-3 overflow-scroll p-12">
+      return (
+        <div className="flex h-screen w-full gap-3 overflow-scroll p-12">
             <Column
                 title="Backlog"
                 column="backlog"

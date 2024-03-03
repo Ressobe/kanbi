@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,7 +8,8 @@ datasource db {
 }
 
 model User {
-  id        Int  @id @default(autoincrement())
+  id        String @id @default(uuid())
+
   email     String @unique
   username  String @unique
   password  String
@@ -24,35 +19,35 @@ model User {
 }
 
 model Board {
-  id        Int       @id @default(autoincrement())
+  id        String       @id @default(uuid())
   title     String
   createdAt DateTime  @default(now())
 
   // Relacja z użytkownikiem
   owner     User      @relation(fields: [ownerId], references: [id])
-  ownerId   Int
+  ownerId   String
 
-  // Relacja z listami
   lists     List[]
 }
 
 model List {
-  id        Int       @id @default(autoincrement())
+  id        String       @id @default(uuid())
   title     String
   createdAt DateTime  @default(now())
 
   board     Board     @relation(fields: [boardId], references: [id])
-  boardId   Int
+  boardId   String
 
-  tasks     Task[]
+  cards     Card[]
 }
 
 
-model Task {
-  id        Int       @id @default(autoincrement())
-  content   String
-  createdAt DateTime  @default(now())
+model Card {
+  id          String       @id @default(uuid())
+  content     String
+  createdAt   DateTime  @default(now())
+  position    Int       
 
   list      List      @relation(fields: [listId], references: [id])
-  listId    Int
+  listId    String
 }

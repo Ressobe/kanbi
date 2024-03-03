@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button"
 import { BasicPlan } from "./basic-plan"
 import ProPlan from "./pro-plan"
 import EnterprisePlan from "./enterprise-plan"

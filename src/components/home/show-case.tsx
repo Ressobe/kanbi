@@ -1,4 +1,5 @@
 "use client"
+
 import {
     Carousel,
     CarouselContent,
@@ -7,7 +8,6 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
-
 
 
 export default function ShowCase() {
@@ -22,13 +22,13 @@ export default function ShowCase() {
         >
             <CarouselContent>
                 <CarouselItem>
-                    <img src="1.png" />
+                    <img src="board.png" />
                 </CarouselItem>
                 <CarouselItem>
-                    <img src="2.png" />
+                    <img src="board-drag.png" />
                 </CarouselItem>
                 <CarouselItem>
-                    <img src="3.png" />
+                    <img src="board-delete.png" />
                 </CarouselItem>
             </CarouselContent>
             <CarouselPrevious />

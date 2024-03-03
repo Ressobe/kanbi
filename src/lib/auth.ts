@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
         if (!passwordMatched) { return null; }
 
         return {
-          id: `${existingUser.id}` ,
+          id: existingUser.id ,
           username: existingUser.username,
           email: existingUser.email,
         }

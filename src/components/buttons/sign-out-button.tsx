@@ -1,15 +1,20 @@
 'use client'
 
+import { cn } from "@/lib/utils";
 import { signOut } from "next-auth/react"
 
-export default function SignOutButton() {
+type SignOutButtonProps = {
+  className?: string
+}
+
+export default function SignOutButton({className} : SignOutButtonProps) {
   const handleClick = () => {
     signOut();
   }
   return (
     <button 
       onClick={() => handleClick()} 
-      className="bg-foreground text-primary-foreground px-4 py-2 rounded-lg"
+      className={cn("bg-foreground text-primary-foreground px-6 py-2 rounded transition-all hover:bg-muted-foreground", className)}
     >
       Log out
     </button>

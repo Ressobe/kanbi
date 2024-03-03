@@ -4,9 +4,15 @@ import { useState } from "react";
 import { SignUpForm } from "../forms/sign-up-form";
 import { SignInForm } from "../forms/sign-in-form";
 import { Dialog, DialogTrigger, DialogContent } from "../ui/dialog";
+import { cn } from "@/lib/utils";
 
-export default function SignInButton() {
-  const [form, setForm] = useState<"sign-in" | "sign-up">("sign-in");
+type SignButtonProps = {
+  defaultFormOpen: "sign-in" | "sign-up";
+  className?: string;
+}
+
+export default function SignButton({defaultFormOpen, className}: SignButtonProps) {
+  const [form, setForm] = useState<"sign-in" | "sign-up">(defaultFormOpen);
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -25,8 +31,8 @@ export default function SignInButton() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button className="bg-foreground flex items-center justify-center gap-3 text-background px-6 py-2 rounded-lg hover:text-accent ">
-          Sign In
+        <button className= {cn("bg-foreground flex items-center justify-center gap-3 text-background px-6 py-2 rounded-lg hover:text-accent", className)}>
+          { defaultFormOpen === "sign-in" ? "Sign In" : "Sign Up" }
         </button>
       </DialogTrigger>
       <DialogContent>

@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Kanbi - Kanban App
 
-## Getting Started
+![Kanbi Screenshot](screenshot.png)
 
-First, run the development server:
+Kanbi is your ultimate solution for seamless task management. With its sleek design and powerful features, Kanbi streamlines your workflow, making task organization effortless.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Intuitive Interface:** Kanbi offers a user-friendly interface, allowing you to organize your tasks with ease.
+- **Drag-and-Drop Functionality:** Effortlessly move tasks between columns using intuitive drag-and-drop functionality.
+- **Customizable Boards:** Tailor Kanbi to fit your unique workflow with customizable boards.
+- **User Authentication:** Ensure the security of your data with robust user authentication features.
+- **Responsive Design:** Access Kanbi anytime, anywhere, with its fully responsive design.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Why Kanbi?
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Kanbi is designed with productivity in mind. Whether you're a solo entrepreneur, a small team, or a large organization, Kanbi adapts to your needs, helping you stay focused and organized.
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+Kanbi leverages cutting-edge technologies to deliver a seamless user experience:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js:** A React framework for building fast and scalable web applications.
+- **Tailwind CSS:** A utility-first CSS framework for building custom designs quickly.
+- **Prisma:** A modern database toolkit for Node.js that simplifies database access.
+- **Shadcn UI:** A UI component library for React that provides a rich set of pre-designed components.
+- **Supabase:** An open-source alternative to Firebase, offering real-time database capabilities and user authentication.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Experience Kanbi Today
 
-## Deploy on Vercel
+Visit [Kanbi](https://www.kanbiapp.com) now to experience the future of task management.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For more information or inquiries, contact me at bartosz.sobina@proton.me
+
+© 2024 Bartosz Sobina. All rights reserved.

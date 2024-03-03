@@ -1,6 +1,6 @@
 # Kanbi - Kanban App
 
-![Kanbi Screenshot](screenshot.png)
+![](screenshot.png)
 
 Kanbi is your ultimate solution for seamless task management. With its sleek design and powerful features, Kanbi streamlines your workflow, making task organization effortless.
 

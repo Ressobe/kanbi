@@ -55,6 +55,7 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 flex flex-col p-6"
       >
+        <h1 className="text-center font-bold text-3xl">Sign In</h1>
         <FormField
           control={form.control}
           defaultValue=""

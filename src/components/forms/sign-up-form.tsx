@@ -29,7 +29,7 @@ export function SignUpForm({onSuccess}: SignUpFormProps) {
   });
 
   const onSubmit = async (values: SignUpFormType) => {
-    const response = await fetch('api/user/sign-up', {
+    const response = await fetch('api/sign-up', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -79,6 +79,7 @@ export function SignUpForm({onSuccess}: SignUpFormProps) {
   return (
     <Form {...form}>
       <form method="post" onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col p-4">
+        <h1 className="text-center font-bold text-3xl">Sign Up</h1>
         <FormField
             control={form.control}
             name="email" 

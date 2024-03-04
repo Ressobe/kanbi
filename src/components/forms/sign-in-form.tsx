@@ -16,12 +16,15 @@ import {
 } from "../ui/form";
 import { signIn } from "next-auth/react";
 import { useToast } from "../ui/use-toast";
+import { useState } from "react";
 
 type SignInFormProps = {
   onSuccess: () => void;
 };
 
 export function SignInForm({ onSuccess }: SignInFormProps) {
+
+  const [loading, setLoading] = useState(false);
   const form = useForm<SignInFormType>({
     resolver: zodResolver(signInSchema),
   });
@@ -30,6 +33,7 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
   const router = useRouter();
 
   const onSubmit = async (values: SignInFormType) => {
+    setLoading(true);
     const signInData = await signIn("credentials", {
       email: values.email,
       password: values.password,
@@ -46,6 +50,7 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
       onSuccess();
       router.refresh();
     }
+    setLoading(false);
   };
 
   return (
@@ -85,8 +90,8 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
           )}
         />
         <div className="w-full flex justify-center">
-          <Button type="submit" className="px-20 rounded">
-            Log in
+          <Button type="submit" className={`px-20 rounded ${loading ? "bg-muted-foreground" : ""}`} disabled={loading}>
+             Log in
           </Button>
         </div>
       </form>

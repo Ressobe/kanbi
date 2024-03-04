@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { useToast } from "../ui/use-toast";
+import { useState } from "react";
 
 
 type SignUpFormProps = {
@@ -24,11 +25,15 @@ type SignUpFormProps = {
 export function SignUpForm({onSuccess}: SignUpFormProps) {
   const { toast } = useToast();
 
+  const [loading, setLoading] = useState(false);
   const form = useForm<SignUpFormType>({
     resolver: zodResolver(signUpSchema)
   });
 
+
+
   const onSubmit = async (values: SignUpFormType) => {
+    setLoading(true);
     const response = await fetch('api/sign-up', {
       method: 'POST',
       headers: {
@@ -64,6 +69,7 @@ export function SignUpForm({onSuccess}: SignUpFormProps) {
           description: "Now log into your new account" 
         }
       );
+      setLoading(false);
       return;
     }
 
@@ -74,6 +80,7 @@ export function SignUpForm({onSuccess}: SignUpFormProps) {
           description: "There was a problem with your request.",
         });
     }
+    setLoading(false);
   };
 
   return (
@@ -140,7 +147,9 @@ export function SignUpForm({onSuccess}: SignUpFormProps) {
           )}
         />
         <div className="w-full flex justify-center">
-          <Button type="submit" className="px-20 rounded">Create Account</Button>
+          <Button type="submit" className={`px-20 rounded ${loading ? "bg-muted-foreground" : ""}`} disabled={loading}>
+            Create Account
+          </Button>
         </div>
       </form>
     </Form>

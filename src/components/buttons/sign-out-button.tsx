@@ -3,13 +3,18 @@
 import { cn } from "@/lib/utils";
 import { signOut } from "next-auth/react"
 
+
 type SignOutButtonProps = {
   className?: string
 }
 
 export default function SignOutButton({className} : SignOutButtonProps) {
+
   const handleClick = () => {
-    signOut();
+    signOut({
+      callbackUrl: '/',
+      redirect: true
+    });
   }
   return (
     <button 

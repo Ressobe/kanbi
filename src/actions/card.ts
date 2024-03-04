@@ -1,8 +1,13 @@
 "use server";
 
-import addCard from "@/database/card";
+import addCard, { removeCard } from "@/database/card";
+import { revalidatePath } from "next/cache";
 
 
-export default async function addCardAction(boardId: string, columnId: string, content: string, position: number) {
-    await addCard(boardId, columnId, content, position);
+export async function addCardAction(boardId: string, columnId: string, content: string, position: number) {
+    return await addCard(boardId, columnId, content, position);
+}
+
+export async function removeCardAction(cardId: string) {
+    await removeCard(cardId);
 }

@@ -61,6 +61,14 @@ export async function updateCards(boardId: string, cards: CardType[]) {
 }
 
 export default async function addCard(boardId: string, columnId: string, content: string, position: number) {
+    const card = await prisma.card.create({
+        data: {
+            content: content,
+            position: position,
+            listId: columnId
+        }
+    })
+
     await prisma.list.update({
         where: { 
             id: columnId,
@@ -68,11 +76,17 @@ export default async function addCard(boardId: string, columnId: string, content
         },
         data: {
             cards: {
-                create: {
-                    content: content,
-                    position: position,
-                }
+                connect: { id: card.id }
             }
         }
+    });
+
+    return card;
+}
+
+export async function removeCard(cardId: string) {
+    await prisma.card.delete({
+        where: { id: cardId }
     })
+
 }

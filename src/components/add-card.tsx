@@ -4,7 +4,7 @@ import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { CardType } from "@/app/types";
 import { PlusCircleIcon, PlusIcon } from "lucide-react";
 import { motion } from "framer-motion";
-import addCardAction from "@/actions/card";
+import { addCardAction } from "@/actions/card";
 
 type AddCardProps = {
     boardId: string;
@@ -31,10 +31,26 @@ export default function AddCard({ boardId, newPosition, column, columnId, setCar
         };
 
         setCards((pv) => [...pv, newCard]);
-
-        await addCardAction(boardId, columnId, text.trim(), newPosition);
-
         setAdding(false);
+
+
+        const addedCard = await addCardAction(boardId, columnId, text.trim(), newPosition);
+
+        setCards(prevCards => {
+                return prevCards.map(card => {
+                    if (card.id === newCard.id) {
+                        return {
+                            id: addedCard.id,
+                            content: card.content,
+                            column: card.column,
+                            columnId: card.columnId,
+                            position: card.position,
+                        };
+                    }
+                    return card;
+                });
+            });
+
     };
 
     return (

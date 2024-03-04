@@ -3,6 +3,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { CardType } from "@/app/types";
 import { FlameIcon, Trash2Icon } from "lucide-react";
+import { removeCardAction } from "@/actions/card";
 
 type TrashProps = {
     setCards: Dispatch<SetStateAction<CardType[]>>;
@@ -20,11 +21,13 @@ export default function Trash({ setCards }: TrashProps) {
         setActive(false);
     };
 
-    const handleDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDragEnd = async (e: React.DragEvent<HTMLDivElement>) => {
         if (e.dataTransfer) {
             const cardId = e.dataTransfer.getData("cardId");
             setCards((pv) => pv.filter((c) => c.id !== cardId));
             setActive(false);
+
+            await removeCardAction(cardId);
         }
     };
 

@@ -4,7 +4,6 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { CardType } from "@/app/types";
 import { Card, DropIndicator } from "./card";
 import AddCard from "./add-card";
-import helloWorldAction from "@/actions/hello";
 import updateBoardAction from "@/actions/board";
 
 type ColumnProps = {

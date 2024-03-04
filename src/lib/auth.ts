@@ -3,9 +3,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { compare } from "bcrypt";
 import db from "./db";
+import type { Adapter } from 'next-auth/adapters';
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(db),
+  adapter: PrismaAdapter(db) as Adapter,
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: 'jwt'
@@ -38,13 +39,12 @@ export const authOptions: NextAuthOptions = {
           username: existingUser.username,
           email: existingUser.email,
         }
-
       }
     })
   ],
   callbacks: {
     async jwt({ token, user}) {
-      if (user) {
+      if (user && 'username' in user) { 
         return {
           ...token,
           username: user.username,

@@ -4,16 +4,20 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { CardType } from "@/app/types";
 import { Card, DropIndicator } from "./card";
 import AddCard from "./add-card";
+import helloWorldAction from "@/actions/hello";
+import updateBoardAction from "@/actions/board";
 
 type ColumnProps = {
     title: string;
     headingColor: string;
     column: string;
+    columnId: string;
+    boardId: string;
     cards: CardType[];
     setCards: Dispatch<SetStateAction<CardType[]>>;
 }
 
-export default function Column({ title, headingColor, column, cards, setCards }: ColumnProps) {
+export default function Column({ title, headingColor, column, columnId, boardId, cards, setCards }: ColumnProps) {
     const [active, setActive] = useState(false);
 
     const handleDragStart = (e: React.DragEvent<HTMLDivElement>, card: CardType) => {
@@ -22,7 +26,7 @@ export default function Column({ title, headingColor, column, cards, setCards }:
         }
     };
 
-    const handleDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDragEnd = async (e: React.DragEvent<HTMLDivElement>) => {
         if (e.dataTransfer) {
 
             const cardId = e.dataTransfer.getData("cardId");
@@ -40,7 +44,8 @@ export default function Column({ title, headingColor, column, cards, setCards }:
                 let cardToTransfer = copy.find((c) => c.id === cardId);
                 if (!cardToTransfer) return;
 
-                cardToTransfer = { ...cardToTransfer, column };
+                cardToTransfer = { ...cardToTransfer, column, columnId };
+
                 copy = copy.filter((c) => c.id !== cardId);
 
                 const moveToBack = before === "-1";
@@ -50,10 +55,12 @@ export default function Column({ title, headingColor, column, cards, setCards }:
                 } else {
                     const insertAtIndex = copy.findIndex((el) => el.id === before);
                     if (insertAtIndex === undefined) return;
-
                     copy.splice(insertAtIndex, 0, cardToTransfer);
                 }
+
                 setCards(copy);
+
+                await updateBoardAction(boardId, copy);
             }
         }
     };
@@ -119,6 +126,8 @@ export default function Column({ title, headingColor, column, cards, setCards }:
         clearHighlights();
         setActive(false);
     };
+
+   
     const filteredCards = cards.filter((c) => c.column === column);
 
     return (
@@ -139,7 +148,7 @@ export default function Column({ title, headingColor, column, cards, setCards }:
                     return <Card key={c.id} {...c} handleDragStart={handleDragStart} />;
                 })}
                 <DropIndicator beforeId="-1" column={column} />
-                <AddCard column={column} setCards={setCards} />
+                <AddCard boardId={boardId} newPosition={filteredCards.length} columnId={columnId} column={column} setCards={setCards} />
             </div>
 
         </div>

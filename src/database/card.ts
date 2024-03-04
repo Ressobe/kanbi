@@ -1,3 +1,4 @@
+import { CardType } from "@/app/types";
 import prisma from "@/lib/db"
 
 
@@ -20,11 +21,58 @@ export async function getBoardCards(boardId: string) {
 
         for (const card of l.cards) {
             cards.push({
-                ...card,
-                listName: l.title,
+                id: card.id,
+                content: card.content,
+                column: l.title,
+                columnId: l.id,
+                position: card.position,
             })
         }
     }
 
     return cards;
+}
+
+export async function deleteCards(boardId: string) {
+    const listsAndCardsToDelete = await prisma.list.findMany({
+            where: { boardId: boardId },
+            include: { cards: true }, 
+    });
+
+    const cardsToDelete = listsAndCardsToDelete.flatMap(list => list.cards);
+
+    await prisma.card.deleteMany({
+            where: { id: { in: cardsToDelete.map(card => card.id) } },
+    });
+}
+
+export async function updateCards(boardId: string, cards: CardType[]) {
+    await deleteCards(boardId);
+    for (let i = 0; i < cards.length; i++) {
+        let card = cards[i];
+        await prisma.card.create({
+            data: {
+                listId: card.columnId,
+                content: card.content,
+                position: i,
+            }
+        })
+    }
+}
+
+export default async function addCard(boardId: string, columnId: string, content: string, position: number) {
+    await prisma.list.update({
+        where: { 
+            id: columnId,
+            boardId: boardId,
+        },
+        data: {
+            cards: {
+                create: {
+                    content: content,
+                    position: position,
+                }
+            }
+        }
+    })
 }

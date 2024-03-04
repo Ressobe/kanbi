@@ -5,7 +5,7 @@ type CardProps = CardType & {
     handleDragStart: Function;
 };
 
-export function Card({title, id, column, handleDragStart} : CardProps) {
+export function Card({content, id, column, handleDragStart} : CardProps) {
     return (
         <>
             <DropIndicator beforeId={id} column={column} />
@@ -13,10 +13,10 @@ export function Card({title, id, column, handleDragStart} : CardProps) {
                 layout
                 layoutId={id}
                 draggable="true"
-                onDragStart={(e) => handleDragStart(e, {title, id, column})}
+                onDragStart={(e) => handleDragStart(e, {content, id, column})}
                 className="cursor-grab rounded border border-neutral-700 bg-neutral-800 p-3 active:cursor-grabbing"
             >
-                <p className="text-sm text-neutral-100">{title}</p>
+                <p className="text-sm text-neutral-100">{content}</p>
             </motion.div>
         </>
     );

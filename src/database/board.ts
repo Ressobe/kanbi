@@ -27,5 +27,5 @@ export async function getUserBoard(userName: string) {
         })
     }
 
-    return user.boards;
+    return user.boards[0];
 }

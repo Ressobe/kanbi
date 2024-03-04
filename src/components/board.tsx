@@ -2,47 +2,41 @@
 
 import Trash from "./trash";
 import Column from "./column";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardType } from "@/app/types";
+import { List } from "@prisma/client";
 
+type BoardProps = {
+    defaultCards: CardType[] | [];
+    lists: List[]
+    boardId: string
+}
 
-export function Board() {
-    const [cards, setCards] = useState<CardType[] | []>([]);
+export function Board({ defaultCards, lists, boardId }: BoardProps) {
+    const [cards, setCards] = useState<CardType[] | []>(defaultCards);
 
-      return (
+    useEffect(() => {
+        console.log(cards);
+    }, [cards]);
+
+    const colors = [ "text-neutral-500", "text-yellow-200", "text-blue-200", "text-emerald-200" ];
+
+    return (
         <div className="flex h-screen w-full gap-3 overflow-scroll p-12">
-            <Column
-                title="Backlog"
-                column="backlog"
-                headingColor="text-neutral-500"
-                cards={cards}
-                setCards={setCards}
-            />
-            <Column
-                title="TODO"
-                column="todo"
-                headingColor="text-yellow-200"
-                cards={cards}
-                setCards={setCards}
-
-            />
-
-            <Column
-                title="In progress"
-                column="doing"
-                headingColor="text-blue-200"
-                cards={cards}
-                setCards={setCards}
-
-            />
-
-            <Column
-                title="Complete"
-                column="done"
-                headingColor="text-emerald-200"
-                cards={cards}
-                setCards={setCards}
-            />
+            {lists.map((column, idx) => {
+                return (
+                    <Column
+                        key={column.title}
+                        title={column.title}
+                        column={column.title}
+                        columnId={column.id}
+                        boardId={boardId}
+                        headingColor={colors[idx]}
+                        cards={cards}
+                        setCards={setCards}
+                    />
+                );
+            })}
             <Trash setCards={setCards} />
         </div>
     );

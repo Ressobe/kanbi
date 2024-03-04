@@ -28,7 +28,7 @@ Kanbi leverages cutting-edge technologies to deliver a seamless user experience:
 
 ## Experience Kanbi Today
 
-Visit [Kanbi](https://www.kanbi.vercel.app) now to experience the future of task management.
+Visit [Kanbi](https://kanbi.vercel.app) now to experience the future of task management.
 
 ---
 
